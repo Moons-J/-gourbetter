@@ -15,11 +15,22 @@
   </div>
   <div class="cards">
     <% @recipes.each do |recipe| %>
+      <% sum = 0 %>
+      <% count = 0%>
+      <% recipe.ratings.each do |rating| %>
+        <% sum += rating.rating.to_f %>
+        <% count +=1 %>
+      <% end %>
+      <% if count.zero? %>
+        <% average = nil %>
+      <% else %>
+        <% average = (sum/count).round(1) %>
+      <% end %>
       <div class="card-trip">
         <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
         <div class="card-trip-infos">
           <div>
-            <h2><%= recipe.title %></h2>
+            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= average %></span> <span style="font-size: 14px;">⭐</span></h2>
             <p><%= recipe.description %></p>
           </div>
         </div>
