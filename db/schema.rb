@@ -31,8 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_124904) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.string "comment"
-    t.integer "rating"
+    t.string "comment", null: false
+    t.integer "rating", null: false
     t.bigint "recipe_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
