@@ -31,8 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_124904) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.string "comment"
-    t.integer "rating"
+    t.string "comment", null: false
+    t.integer "rating", null: false
     t.bigint "recipe_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_124904) do
     t.string "description"
     t.string "instructions"
     t.decimal "price"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "category"
     t.integer "number_of_people"
     t.datetime "created_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_124904) do
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "nationality", default: "", null: false
-    t.string "user_name", default: "Idiot"
+    t.string "user_name", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
