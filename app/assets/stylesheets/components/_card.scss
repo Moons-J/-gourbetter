@@ -1,0 +1,12 @@
+.user_card {
+  background-color: beige;
+  border-radius: 10px;
+  padding: 1cap;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  img {
+    border-radius: 50%;
+    height: 150px;
+  }
+}
