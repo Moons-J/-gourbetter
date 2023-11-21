@@ -1,0 +1,32 @@
+.card-info {
+  width: 250px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgb(230,230,230);
+  text-align: center;
+  padding: 20px;
+  border: 1px solid rgb(230,230,230);
+
+  img{
+    height: 125px;
+  }
+
+  p{
+    opacity: 0.6;
+  }
+}
+
+.card-all {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-container {
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
