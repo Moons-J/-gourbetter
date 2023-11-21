@@ -1,0 +1,82 @@
+.card-trip {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: visible;
+
+  img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+  }
+
+  .card-trip-pricing {
+    position: absolute;
+    right: 3%;
+    bottom: 2%;
+  }
+
+  .read-more-button {
+    position: absolute;
+    bottom: -4.5%;
+    left:50%;
+    align-items: center;
+    text-decoration: none;
+    background-color: #1b7ee0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 32px;
+    min-width: 0px;
+    padding: 0px;
+    padding-left: 14px;
+    padding-right: 14px;
+    text-align: center;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transform: translate(-50%, 0);
+  }
+
+  .read-more-button:hover,
+  .read-more-button:focus {
+    background-color: #16437E;
+    color: #ffffff;
+  }
+
+
+
+  .card-trip-infos {
+    padding: 16px;
+    padding-bottom: 27px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+  }
+}
+
+.card-trip:hover {
+  transition: 0.6s;
+  transform: scale(1.06);
+}

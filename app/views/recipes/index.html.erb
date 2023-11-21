@@ -1,9 +1,31 @@
 <form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="<%= params[:query] %>">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="">
   <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 
-<h1>index</h1>
-<% @recipes.each do |recipe| %>
-  <%= recipe.title %> <br>
-<% end %>
+<div class="container">
+  <div class="row pb-1 pt-1">
+    <div class="col">
+      <% if @query %>
+        <p>You searched for <strong><%= @query %></strong>. We found <%= @recipes.count %> recipes out of our <%= Recipe.count %> on our website.</p>
+      <% else %>
+        <p>All <%= @recipes.count %> recipes</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="cards">
+    <% @recipes.each do |recipe| %>
+      <div class="card-trip">
+        <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= recipe.title %></h2>
+            <p><%= recipe.description %></p>
+          </div>
+        </div>
+        <h2 class="card-trip-pricing"><%= recipe.price %></h2>
+        <%= link_to("Read more", "#", class: "read-more-button") %>
+      </div>
+    <% end %>
+  </div>
+</div>
