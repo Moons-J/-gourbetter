@@ -7,3 +7,25 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user = User.new(
+  email: "hhelo@gmail.com",
+  password: "123456",
+  first_name: "Jonas",
+  last_name: "moons",
+  # nationality: Faker::
+  user_name: "moons.j",
+)
+user.save!
+
+
+3.times do
+  Recipe.create!(
+    title: "Food ",
+    description: "bla bla bla",
+    instructions: "bla bla bla",
+    user_id: 1,
+    price: 11,
+    number_of_people: 2,
+  )
+end
