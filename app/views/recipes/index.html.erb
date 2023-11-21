@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row pb-1 pt-1">
+    <div class="col">
+      <% if @query %>
+        <p>You searched for <strong><%= @query %></strong>. We found <%= @recipes.count %> recipes out of our <%= Recipe.count %> on our website.</p>
+      <% else %>
+        <p>All <%= @recipes.count %> recipes</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="cards">
+    <% @recipes.each do |recipe| %>
+      <% sum = 0 %>
+      <% count = 0%>
+      <% recipe.ratings.each do |rating| %>
+        <% sum += rating.rating.to_f %>
+        <% count +=1 %>
+      <% end %>
+      <% if count.zero? %>
+        <% average = nil %>
+      <% else %>
+        <% average = (sum/count).round(1) %>
+      <% end %>
+      <div class="card-trip">
+        <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= average %></span> <span style="font-size: 14px;">⭐</span></h2>
+            <p><%= recipe.description %></p>
+          </div>
+        </div>
+        <h2 class="card-trip-pricing"><%= recipe.price %></h2>
+        <%= link_to("Read more", "#", class: "read-more-button") %>
+      </div>
+    <% end %>
+  </div>
+</div>
