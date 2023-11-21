@@ -1,16 +1,31 @@
-<footer class="bd-footer fixed-bottom d-flex">
-  <div class="container">
-    <ul>
-      <div class="d-flex">
-        <div class="offset-lg-1 mb-3">
-          <li><a href="">Gourbetter by PayMe.Inc</a></li>
-          <li>TEL. Not applicable</li>
-          <li>@ Please don't</li>
-        </div>
-        <div class="offset-lg-1 md-9">
-          <li>The first recipe is always a fail.</li>
-        </div>
+<footer class="bd-footer fixed-bottom bg-dark border-bottom border-body">
+  <ul>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="contact col-4">
+        <li><%= "Gourbetter by PayMe.Inc" %></li>
+        <li>TEL. Not applicable</li>
+        <li>@ Please don't</li>
       </div>
-    </ul>
-  </div>
+      <div class="phrase col-4">
+        <li>The first recipe is always a fail</li>
+      </div>
+      <div class="col-4 justify-content-center">
+        <li class="social-media">
+          <%= link_to "https://github.com/" do %>
+            <i class="fa-brands fa-square-github"></i>
+          <% end %>
+        </li>
+        <li class="social-media">
+          <%= link_to "https://www.instagram.com/" do %>
+            <i class="fa-brands fa-square-instagram"></i>
+          <% end %>
+        </li>
+        <li class="social-media">
+          <%= link_to "https://twitter.com/" do %>
+            <i class="fa-brands fa-square-x-twitter"></i>
+          <% end %>
+        </li>
+      </div>
+    </div>
+  </ul>
 </footer>
