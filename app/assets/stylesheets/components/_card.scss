@@ -1,3 +1,39 @@
+.user_card {
+  border-radius: 10px;
+  padding: 1cap;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+  .btn {
+    margin: 0;
+    vertical-align: middle;
+    padding: 0.6rem 1rem;
+  }
+
+  img {
+    border-radius: 50%;
+    height: 150px;
+    margin: 25px;
+  }
+}
+
+.recipe_card {
+  letter-spacing: 0.2em;
+  margin-top: 2rem;
+}
+
+.card_menu_seperator {
+  display: flex;
+  justify-content: space-between;
+  padding: 1cap;
+  .btn {
+    margin: 0;
+    vertical-align: middle;
+    padding: 0.6rem 1rem;
+  }
+}
 .card-trip {
   background: white;
   border-radius: 6px;
@@ -37,7 +73,7 @@
     left:50%;
     align-items: center;
     text-decoration: none;
-    background-color: #1b7ee0;
+    background-color: #ffa800;
     border-radius: 100px;
     box-sizing: border-box;
     color: #ffffff;
@@ -60,7 +96,7 @@
 
   .read-more-button:hover,
   .read-more-button:focus {
-    background-color: #16437E;
+    background-color: #cf851e;
     color: #ffffff;
   }
 
