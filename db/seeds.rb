@@ -35,8 +35,8 @@ puts "seeding users 🌱"
   )
   user.save!
 
+  puts "seeding a recipe 🍉"
   3.times do
-    puts "seeding a recipe 🍉"
     Recipe.create!(
       title: Faker::Food.dish,
       description: Faker::Food.description,
