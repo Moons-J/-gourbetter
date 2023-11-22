@@ -29,7 +29,7 @@
             <p><%= recipe.description %></p>
           </div>
         </div>
-        <h2 class="card-trip-pricing"><%= recipe.price %></h2>
+        <h2 class="card-trip-pricing">€ <%= recipe.price %></h2>
         <%= link_to("Read more", recipe_path(recipe), class: "read-more-button") %>
       </div>
     <% end %>
