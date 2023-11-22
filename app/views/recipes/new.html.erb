@@ -1,25 +1,21 @@
-<%= simple_form_for(@recipe) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :category %>
-  <%= f.input :description %>
-  <%= f.input :number_of_people %>
-  <%= f.fields_for :recipe_ingredients do |ingredient_form| %>
-    <%= ingredient_form.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
-    <%= ingredient_form.input :amount %>
-    <%= ingredient_form.input :unit %>
-  <% end %>
-  <%= f.input :instructions %>
-  <%= f.submit "Publish recipe" %>
-<% end %>
+<div class="container-small container mx-auto bg-white p-4">
+  <h2 class="text-center">Log in</h2>
 
-
-<%#
-t.bigint "recipe_id", null: false
-t.bigint "ingredient_id", null: false
-t.integer "amount"
-t.string "unit"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
-t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
-%>
+  <div class="form-inputs">
+    <%= simple_form_for(@recipe) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :category %>
+      <%= f.input :description %>
+      <%= f.input :number_of_people %>
+      <div class="">
+        <%= f.fields_for :recipe_ingredients do |ingredient_form| %>
+          <%= ingredient_form.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
+          <%= ingredient_form.input :amount %>
+          <%= ingredient_form.input :unit %>
+        <% end %>
+      </div>
+      <%= f.input :instructions %>
+      <%= f.submit "Publish recipe", class: "btn btn-warning"  %>
+    <% end %>
+  </div>
+</div>
