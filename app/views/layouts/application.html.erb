@@ -8,17 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-    <link rel="stylesheet" href="/app/assets/stylesheets/components/_navbar.scss">
-
   </head>
 
   <body>
     <div class="page-container">
       <div class="navbar-container"><%= render "shared/navbar" %></div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <div class="container"><%= yield %></div>
+      <%= yield %>
       <div class="footer-container"><%= render "shared/footer" %></div>
     </div>
   </body>

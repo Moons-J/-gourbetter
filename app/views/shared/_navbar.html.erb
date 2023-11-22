@@ -20,9 +20,11 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Recipes
           </button>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Show all", recipes_path %></li>
-            <li><%= link_to "Create recipe", new_recipe_path %></li>
+          <ul class="dropdown-menu btn btn-dark bg-dark">
+            <div class="d-flex row">
+              <li><%= link_to "Show all", recipes_path %></li>
+              <li><%= link_to "Create recipe", new_recipe_path %></li>
+            </div>
           </ul>
           <li class="nav-item">
             <%= link_to "Log Out", destroy_user_session_path %>
