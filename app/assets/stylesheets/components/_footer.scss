@@ -11,6 +11,12 @@
 //   width: 40px;
 // }
 
+.page-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
 footer{
   width: 100%;
   font-size: smaller;
