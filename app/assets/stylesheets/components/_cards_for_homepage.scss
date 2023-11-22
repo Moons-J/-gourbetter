@@ -1,5 +1,5 @@
 .card-info {
-  width: 250px;
+  width: 300px;
   border-radius: 3px;
   box-shadow: 0 0 5px rgb(230,230,230);
   text-align: center;
@@ -29,4 +29,15 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+}
+
+.text-container {
+  padding-top: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+
+  p {
+    font-size: 18px;
+    text-align: center;
+  }
 }
