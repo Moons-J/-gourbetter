@@ -8,6 +8,7 @@ class CreateRecipes < ActiveRecord::Migration[7.1]
       t.references :user, foreign_key: true
       t.string :category
       t.integer :number_of_people
+      t.float :average_rating
 
       t.timestamps
     end
