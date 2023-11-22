@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
   end
 
   def recipes_params
-    params.require(:recipe).permit(:title, :description, :price, :category, :number_of_people)
+    params.require(:recipe).permit(:title, :description, :price, :category, :number_of_people, :instructions)
   end
 
   def set_recipes_average_rating
