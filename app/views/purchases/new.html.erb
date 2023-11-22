@@ -1,17 +1,17 @@
-<h1>Confirm your purchase</h1>
+<h1 class="text-center pb-4">Confirm your purchase 🤤</h1>
 
-<div class="card-trip">
+<div class="card-trip container w-50">
   <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
   <div class="card-trip-infos">
     <div>
-      <h2><%= @recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= average %></span> <span style="font-size: 14px;">⭐</span></h2>
+      <h2><%= @recipe.title %></h2>
       <p><%= @recipe.description %></p>
     </div>
   </div>
   <h2 class="card-trip-pricing"><%= @recipe.price %></h2>
-  <%= link_to("Read more", recipe_path(recipe), class: "read-more-button") %>
+  <%= link_to("Read more", recipe_path(@recipe), class: "read-more-button") %>
 </div>
 
-<%= button_to "Confirm", root_path %>
+<div class="text-center mt-5"><%= button_to "Confirm", recipe_purchases_path(@recipe), class: "px-4 btn btn-yellow mx-auto" %></div>
 
 <%= link_to "Back to recipes", recipes_path %>
