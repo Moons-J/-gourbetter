@@ -23,7 +23,7 @@
         <div class="list-group">
           <% @user.purchases.each do |purchase| %>
             <%= link_to( "#", class: "list-group-item list-group-item-action") do %>
-              <i class="fa-regular fa-eye" style="color: #ffbb00;"> <%= purchase.recipe.title %></i>
+              <i class="fa-solid fa-kitchen-set"> <%= purchase.recipe.title %></i>
             <%# recipe_path[purchase.recipe] %>
             <% end %>
           <% end %>
@@ -41,7 +41,7 @@
         <div class="list-group">
           <% @user.recipes.each do |recipe| %>
             <%= link_to( "#", class: "list-group-item list-group-item-action") do %>
-              <i class="fa-solid fa-pen-to-square" style="color: #ffbb00;"> <%= recipe.title %></i>
+              <i class="fa-solid fa-pen-to-square"> <%= recipe.title %></i>
             <% end %>
           <% end %>
             <%# recipe_path[purchase.recipe] %>
