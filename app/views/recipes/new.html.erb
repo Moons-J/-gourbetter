@@ -1,0 +1,8 @@
+<%= simple_form_for(@restaurant) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :category %>
+  <%= f.input :description %>
+  <%= f.input :number_of_people %>
+  <%= f.input :instructions %>
+  <%= f.submit "Publish recipe" %>
+<% end %>
