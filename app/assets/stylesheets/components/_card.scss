@@ -1,5 +1,4 @@
 .user_card {
-  background-color: beige;
   border-radius: 10px;
   padding: 1cap;
   display: flex;
@@ -7,9 +6,17 @@
   gap: 1rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
+  .btn {
+    margin: 0;
+    border-radius: 25px;
+    vertical-align: middle;
+    padding: 0.6rem 1rem;
+  }
+
   img {
     border-radius: 50%;
     height: 150px;
+    margin: 25px;
   }
 }
 

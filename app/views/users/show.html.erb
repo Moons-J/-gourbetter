@@ -9,7 +9,7 @@
           <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
           <p><%= @user.email %></p>
           <p><%= @user.nationality %></p>
-          <a href=# class="btn btn-success">Change my information ⚙️</a>
+          <a href=<%= edit_user_registration_path %> class="btn btn-primary">Change my information ⚙️</a>
         </div>
         <img src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png" alt="user avatar">
       </div>
@@ -18,7 +18,7 @@
       <div class="recipe_card">
         <div class="card_menu_seperator">
           <h2>Purchased recipes</h2>
-          <%= link_to("Find new recipe's", "#", class: "btn btn-success") %>
+          <%= link_to("Find new recipe's", recipes_path, class: "btn btn-primary") %>
         </div>
         <div class="list-group">
           <% @user.purchases.each do |purchase| %>
@@ -34,7 +34,7 @@
       <div class="recipe_card">
         <div class="card_menu_seperator">
           <h2>Created recipes</h2>
-          <%= link_to("Create new recipe", "#", class: "btn btn-success") %>
+          <%= link_to("Create new recipe", "#", class: "btn btn-primary") %>
         </div>
         <div class="list-group">
           <% @user.recipes.each do |recipe| %>
