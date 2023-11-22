@@ -1,31 +1,27 @@
-<div class="container">
-  <div class="row pb-1 pt-1">
-    <div class="col">
+<div class="container" data-controller="order-recipes-by">
+  <div class="d-flex justify-content-between mt-2">
+    <div>
       <% if @query %>
         <p>You searched for <strong><%= @query %></strong>. We found <%= @recipes.count %> recipes out of our <%= Recipe.count %> on our website.</p>
       <% else %>
         <p>All <%= @recipes.count %> recipes</p>
       <% end %>
     </div>
+    <div>
+      <select name="Order-By" data-action="change->order-recipes-by#orderRecipes">
+        <option value="">Latest</option>
+        <option value="top">Highest rating</option>
+        <option value="lowest">Lowest rating</option>
+      </select>
+    </div>
   </div>
-  <div class="cards">
+  <div class="cards" data-order-recipes-by-target="cards">
     <% @recipes.each do |recipe| %>
-      <% sum = 0 %>
-      <% count = 0%>
-      <% recipe.ratings.each do |rating| %>
-        <% sum += rating.rating.to_f %>
-        <% count +=1 %>
-      <% end %>
-      <% if count.zero? %>
-        <% average = nil %>
-      <% else %>
-        <% average = (sum/count).round(1) %>
-      <% end %>
       <div class="card-trip">
         <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
         <div class="card-trip-infos">
           <div>
-            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= average %></span> <span style="font-size: 14px;">⭐</span></h2>
+            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= recipe.average_rating %></span> <span style="font-size: 14px;">⭐</span></h2>
             <p><%= recipe.description %></p>
           </div>
         </div>

@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_124904) do
     t.bigint "user_id"
     t.string "category"
     t.integer "number_of_people"
+    t.float "average_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
