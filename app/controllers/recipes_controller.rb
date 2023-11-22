@@ -7,9 +7,9 @@ class RecipesController < ApplicationController
     set_recipes_average_rating
     if params[:query].present?
       @query = params[:query]
-      @recipes = Recipe.where("title ILIKE :title", title: "%#{params[:query]}%")
+      @recipes = params[:rating].present? ? order_recipes(params[:rating], params[:query]) : Recipe.where("title ILIKE :title", title: "%#{params[:query]}%")
     else
-      @recipes = Recipe.all
+      @recipes = params[:rating].present? ? order_recipes(params[:rating]) : Recipe.all
     end
   end
 
@@ -22,11 +22,27 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      render :new, 422
+      render :new
     end
   end
 
   private
+
+  def order_recipes(keyword, query = nil)
+    if query.nil?
+      if keyword == "top"
+        return Recipe.all.sort_by(&:average_rating).reverse
+      else
+        return Recipe.all.sort_by(&:average_rating)
+      end
+    else
+      if keyword == "top"
+        return Recipe.where("title ILIKE :title", title: "%#{query}%").sort_by(&:average_rating).reverse
+      else
+        return Recipe.where("title ILIKE :title", title: "%#{query}%").sort_by(&:average_rating)
+      end
+    end
+  end
 
   def recipes_params
     params(:recipe).permit(:title, :description, :price, :category, :number_of_people)

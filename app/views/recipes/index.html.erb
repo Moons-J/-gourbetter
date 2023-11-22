@@ -1,19 +1,21 @@
-<div class="container">
-  <div class="row pb-1 pt-1">
-    <div class="col">
+<div class="container" data-controller="order-recipes-by">
+  <div class="d-flex justify-content-between mt-2">
+    <div>
       <% if @query %>
         <p>You searched for <strong><%= @query %></strong>. We found <%= @recipes.count %> recipes out of our <%= Recipe.count %> on our website.</p>
       <% else %>
         <p>All <%= @recipes.count %> recipes</p>
       <% end %>
-
-      <select name="Order-By">
-        <option value="top">Top rated</option>
-        <option value="lowest">Lowest rated</option>
+    </div>
+    <div>
+      <select name="Order-By" data-action="change->order-recipes-by#orderRecipes">
+        <option value="">Latest</option>
+        <option value="top">Highest rating</option>
+        <option value="lowest">Lowest rating</option>
       </select>
     </div>
   </div>
-  <div class="cards">
+  <div class="cards" data-order-recipes-by-target="cards">
     <% @recipes.each do |recipe| %>
       <div class="card-trip">
         <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
