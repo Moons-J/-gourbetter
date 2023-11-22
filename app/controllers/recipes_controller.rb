@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe.recipe_ingredients.new
   end
 
   def create
@@ -22,7 +23,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -45,7 +46,7 @@ class RecipesController < ApplicationController
   end
 
   def recipes_params
-    params(:recipe).permit(:title, :description, :price, :category, :number_of_people)
+    params.require(:recipe).permit(:title, :description, :price, :category, :number_of_people)
   end
 
   def set_recipes_average_rating
