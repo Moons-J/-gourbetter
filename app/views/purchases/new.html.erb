@@ -1,3 +1,17 @@
-<h1>Purchase page</h1>
+<h1>Confirm your purchase</h1>
+
+<div class="card-trip">
+  <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= average %></span> <span style="font-size: 14px;">⭐</span></h2>
+      <p><%= @recipe.description %></p>
+    </div>
+  </div>
+  <h2 class="card-trip-pricing"><%= @recipe.price %></h2>
+  <%= link_to("Read more", recipe_path(recipe), class: "read-more-button") %>
+</div>
+
+<%= button_to "Confirm", root_path %>
 
 <%= link_to "Back to recipes", recipes_path %>
