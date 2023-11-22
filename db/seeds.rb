@@ -14,20 +14,20 @@ puts "clearing RecipeIngredient 🔥"
 RecipeIngredient.destroy_all
 puts "clearing Rating 🔥"
 Rating.destroy_all
+puts "clearing Purchases 🔥"
+Purchase.destroy_all
 puts "clearing Recipe 🔥"
 Recipe.destroy_all
 puts "clearing User 🔥"
 User.destroy_all
 puts "clearing Ingredient 🔥"
 Ingredient.destroy_all
-puts "clearing Purchases 🔥"
-Purchase.destroy_all
 
 puts "seeding users 🌱"
 5.times do
   user = User.new(
     email: Faker::Internet.email,
-    password: Faker::Internet.password,
+    password: "123456",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     nationality: Faker::Address.country,
