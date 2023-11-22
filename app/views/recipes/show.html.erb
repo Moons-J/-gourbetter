@@ -1,0 +1,61 @@
+
+<div class="recipe-show container mx-auto d-flex">
+   <img
+    src="https://images.unsplash.com/photo-1549589237-9e70b6be4da8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80"
+    alt="Pancake"
+   />
+   <%# if recipe has any ratings, display rating with stars %>
+   <% if @recipe.ratings.any? %>
+    <% sum = 0 %>
+      <% count = 0%>
+      <% @recipe.ratings.each do |rating| %>
+        <% sum += rating.rating.to_f %>
+        <% count +=1 %>
+      <% end %>
+      <% if count.zero? %>
+        <% average = nil %>
+      <% else %>
+        <% average = (sum/count).round(1) %>
+      <% end %>
+   <div class="container__text">
+    <h1 class="text-dark"><%= @recipe.title %></h1>
+    <div class="container__text__star">
+      <% if average === 0 %>
+        <span class="fa-regular fa-star"></span>
+      <% end %>
+      <% average.round.times do %>
+        <span class="fa fa-star"></span>
+      <% end %>
+     <p><%= average %>/5</p>
+    </div>
+    <%# if no ratings display this %>
+    <% else %>
+    <p>There are no ratings for this recipe yet</p>
+  <% end %>
+
+
+    <h3>Description:</h3>
+    <p><%= @recipe.description %></p>
+
+    <%# Should be visible when user bought the recipe %>
+    <%# <h3>Instructions:</h3>
+    <p><%= @recipe.instructions ></p> %>
+
+    <div class="container__text__timing">
+     <div class="container__text__timing_time">
+      <h2>Number of portions</h2>
+      <p class="text-dark"><%= @recipe.number_of_people %></p>
+     </div>
+     <div class="container__text__timing_time">
+      <h2>Chef</h2>
+      <p class="text-dark"><%= @recipe.user.user_name %></p>
+     </div>
+     <div class="container__text__timing_time">
+      <h2>Price</h2>
+      <p class="text-dark"><%= @recipe.price %>euros</p>
+     </div>
+    </div>
+     <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
+    <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+   </div>
+  </div>
