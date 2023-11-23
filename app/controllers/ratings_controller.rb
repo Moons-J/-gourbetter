@@ -15,6 +15,11 @@ class RatingsController < ApplicationController
     end
   end
 
+  def edit
+    @rating = Rating.find(params[:id])
+    @recipe = @rating.recipe
+  end
+
   private
 
   def rating_params

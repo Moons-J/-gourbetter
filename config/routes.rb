@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :recipes, only: %i[index show new create edit update] do
     resources :purchases, only: %i[new create]
-    resources :ratings, only: %i[create]
+    resources :ratings, only: %i[create update]
   end
+  resources :ratings, only: [:edit]
 end

@@ -1,7 +1,11 @@
 <h1 class="text-center pb-4">Confirm your purchase 🤤</h1>
 
 <div class="card-trip container w-50">
-  <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
+  <% if @recipe.photo.key.nil? %>
+    <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
+  <% else %>
+    <%= cl_image_tag @recipe.photo.key, crop: :fill %>
+  <% end %>
   <div class="card-trip-infos">
     <div>
       <h2><%= @recipe.title %></h2>
