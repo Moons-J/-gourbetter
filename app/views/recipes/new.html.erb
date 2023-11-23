@@ -1,41 +1,6 @@
 <div class="container-small container mx-auto bg-white p-4">
   <h2 class="text-center">New recipe</h2>
 
-  <div class="form-inputs">
-    <%= simple_form_for(@recipe) do |f| %>
-      <%= f.input :title %>
-      <%= f.input :price %>
-      <%= f.input :category %>
-      <%= f.input :description %>
-      <%= f.input :number_of_people %>
-      <div data-controller="add-ingredient-recipe">
-        <div data-add-ingredient-recipe-target="list">
-          <template class="d-flex ingredient-form">
-            <div class="d-flex ingredient-form">
-            <%= f.fields_for :recipe_ingredients do |new_ingredient| %>
-              <div class="col-6">
-                <%= new_ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
-              </div>
-              <%= new_ingredient.input :amount %>
-              <%= new_ingredient.input :unit %>
-            <% end %>
-          </div>
-          </template>
-          <div class="d-flex ingredient-form">
-            <%= f.fields_for :recipe_ingredients do |new_ingredient| %>
-              <div class="col-6">
-                <%= new_ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
-              </div>
-              <%= new_ingredient.input :amount %>
-              <%= new_ingredient.input :unit %>
-            <% end %>
-          </div>
-        </div>
+  <%= render "shared/form" %>
 
-        <button class="btn btn-warning add-ingredient" data-action="click->add-ingredient-recipe#add">Add ingredient</button>
-      </div>
-      <%= f.input :instructions %>
-      <%= f.submit "Publish recipe", class: "btn btn-warning"  %>
-    <% end %>
-  </div>
 </div>

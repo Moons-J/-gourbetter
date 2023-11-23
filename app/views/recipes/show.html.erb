@@ -1,9 +1,6 @@
 
 <div class="recipe-show container mx-auto d-flex">
-   <img
-    src="https://images.unsplash.com/photo-1549589237-9e70b6be4da8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80"
-    alt="Pancake"
-   />
+   <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
    <%# if recipe has any ratings, display rating with stars %>
    <% if @recipe.ratings.any? %>
     <% sum = 0 %>
