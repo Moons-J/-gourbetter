@@ -8,6 +8,10 @@
   flex-wrap: wrap;
 }
 
+.small_container {
+  max-width: 720px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
