@@ -7,6 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+price_range = (5..30).to_a
 units = ['grams', 'kg', 'ml', 'l', 'tsp', 'tbsp', 'cup', 'pinch', 'pack', 'handful', 'dash', 'drop', 'filet', 'whole']
 ingredients = ['Red chili flakes', 'Black peppercorns', 'Coriander
 ','Fennel seeds
@@ -111,7 +113,8 @@ recipe = Recipe.create!(
   Bake in the preheated oven until bubbly and cheese is melted, about 20 minutes.",
   category: "Italian",
   user_id: user.id,
-  price: Faker::Number.decimal(l_digits: 1),
+  # I need a random decimal from 5 to 30
+  price: price_range.sample,
   number_of_people: 6,
 )
 
@@ -121,7 +124,7 @@ puts "seeding recipe ingredients 🌱"
     recipe_id: recipe.id,
     ingredient_id: Ingredient.all.sample.id,
     amount: Faker::Number.between(from: 1, to: 4),
-    unit: Faker::Food.measurement,
+    unit: units.sample,
   )
 end
 
@@ -146,7 +149,7 @@ puts "seeding users 🌱"
       instructions: Faker::Food.description,
       category: Faker::Food.ethnic_category,
       user_id: user.id,
-      price: Faker::Number.decimal(l_digits: 1),
+      price: price_range.sample,
       number_of_people: Faker::Number.between(from: 1, to: 4),
       )
       puts "seeding recipe ingrediants 🌱"
@@ -163,10 +166,11 @@ end
 
 puts "seeding purchases 🌱"
 20.times do
+  recipe = Recipe.all.sample
   Purchase.create!(
     user_id: User.all.sample.id,
-    recipe_id: Recipe.all.sample.id,
-    total_price: Recipe.all.sample.price,
+    recipe_id: recipe.id,
+    total_price: recipe.price,
   )
 end
 
@@ -180,13 +184,5 @@ puts "seeding ratings 🌱"
   )
 end
 
-puts "seeding purchases 🌱"
-1.times do
-  Purchase.create!(
-    user_id: User.all.sample.id,
-    recipe_id: Recipe.all.sample.id,
-    total_price: Faker::Number.decimal(l_digits: 1),
-  )
-end
-
-puts "seeding finished 🌳☀️"
+puts "               ☀️"
+puts "seeding finished 🌳"
