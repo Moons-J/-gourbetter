@@ -114,6 +114,7 @@ recipe = Recipe.create!(
   price: Faker::Number.decimal(l_digits: 1),
   number_of_people: 6,
 )
+
 puts "seeding recipe ingredients 🌱"
 8.times do
   RecipeIngredient.create!(
@@ -124,27 +125,9 @@ puts "seeding recipe ingredients 🌱"
   )
 end
 
-puts "seeding purchases 🌱"
-20.times do
-  Purchase.create!(
-    user_id: user.id,
-    recipe_id: Recipe.all.sample.id,
-    total_price: Faker::Number.decimal(l_digits: 2),
-  )
-end
-
-Recipe.create!(
-  title: Faker::Food.dish,
-  description: Faker::Food.description,
-  instructions: Faker::Food.description,
-  category: Faker::Food.ethnic_category,
-  user_id: user.id,
-  price: Faker::Number.decimal(l_digits: 2),
-  number_of_people: Faker::Number.between(from: 1, to: 4),
-)
 
 puts "seeding users 🌱"
-5.times do
+10.times do
   user = User.new(
     email: Faker::Internet.email,
     password: "123456",
@@ -152,30 +135,38 @@ puts "seeding users 🌱"
     last_name: Faker::Name.last_name,
     nationality: Faker::Address.country,
     user_name: Faker::Internet.username,
-  )
-  user.save!
+    )
+    user.save!
 
-  puts "seeding a recipe 🍉"
-  3.times do
-    Recipe.create!(
+    2.times do
+    puts "seeding a recipe 🍉"
+    recipe = Recipe.create!(
       title: Faker::Food.dish,
       description: Faker::Food.description,
       instructions: Faker::Food.description,
       category: Faker::Food.ethnic_category,
       user_id: user.id,
-      price: Faker::Number.decimal(l_digits: 2),
+      price: Faker::Number.decimal(l_digits: 1),
       number_of_people: Faker::Number.between(from: 1, to: 4),
-    )
+      )
+      puts "seeding recipe ingrediants 🌱"
+      8.times do
+        RecipeIngredient.create!(
+          recipe_id: recipe.id,
+          ingredient_id: Ingredient.all.sample.id,
+          amount: Faker::Number.between(from: 1, to: 4),
+          unit: Faker::Food.measurement,
+          )
+      end
   end
 end
 
-puts "seeding recipe ingrediants 🌱"
-30.times do
-  RecipeIngredient.create!(
+puts "seeding purchases 🌱"
+20.times do
+  Purchase.create!(
+    user_id: User.all.sample.id,
     recipe_id: Recipe.all.sample.id,
-    ingredient_id: Ingredient.all.sample.id,
-    amount: Faker::Number.between(from: 1, to: 4),
-    unit: Faker::Food.measurement,
+    total_price: Recipe.all.sample.price,
   )
 end
 
@@ -190,11 +181,11 @@ puts "seeding ratings 🌱"
 end
 
 puts "seeding purchases 🌱"
-30.times do
+1.times do
   Purchase.create!(
     user_id: User.all.sample.id,
     recipe_id: Recipe.all.sample.id,
-    total_price: Faker::Number.decimal(l_digits: 2),
+    total_price: Faker::Number.decimal(l_digits: 1),
   )
 end
 
