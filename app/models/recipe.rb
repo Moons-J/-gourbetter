@@ -13,4 +13,14 @@ class Recipe < ApplicationRecord
   validates :category, presence: true
   validates :number_of_people, numericality: { only_integer: true }
   validates :instructions, presence: true, length: { minimum: 20 }
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [ :title, :description , :category ],
+    associated_against: {
+      ingredients: [ :name ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
