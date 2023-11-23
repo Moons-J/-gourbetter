@@ -5,5 +5,8 @@
   <small><em class="text-muted"><%= distance_of_time_in_words_to_now(rating.created_at) %> ago</em></small>
   <p>by <%= rating.user.user_name %></p>
   <p class="mb-0"><%= rating.comment %></p>
+  <% if current_user == rating.user %>
+    <%= link_to "Edit", edit_rating_path(rating), class: "btn btn-warning" %>
+  <% end %>
   <hr>
 </div>

@@ -15,6 +15,22 @@ class RatingsController < ApplicationController
     end
   end
 
+  def edit
+    @rating = Rating.find(params[:id])
+    @recipe = @rating.recipe
+  end
+
+  def update
+    @rating = Rating.find(params[:id])
+    @recipe = @rating.recipe
+    @rating.update(rating_params)
+    if @rating.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def rating_params
