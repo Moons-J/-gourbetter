@@ -28,6 +28,21 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+    @recipe.recipe_ingredients
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipes_params)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def order_recipes(keyword, query = nil)
