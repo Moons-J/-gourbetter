@@ -121,7 +121,7 @@ puts "seeding recipe ingredients 🌱"
     recipe_id: recipe.id,
     ingredient_id: Ingredient.all.sample.id,
     amount: Faker::Number.between(from: 1, to: 4),
-    unit: Faker::Food.measurement,
+    unit: units.sample,
   )
 end
 
@@ -189,4 +189,5 @@ puts "seeding purchases 🌱"
   )
 end
 
-puts "seeding finished 🌳☀️"
+puts "               ☀️"
+puts "seeding finished 🌳"
