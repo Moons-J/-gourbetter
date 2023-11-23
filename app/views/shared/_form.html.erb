@@ -9,23 +9,23 @@
       <div data-controller="add-ingredient-recipe">
         <div data-add-ingredient-recipe-target="list">
           <template class="d-flex ingredient-form">
-            <div class="d-flex ingredient-form">
-            <%= f.fields_for :recipe_ingredients do |new_ingredient| %>
-              <div class="col-6">
-                <%= new_ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
-              </div>
-              <%= new_ingredient.input :amount %>
-              <%= new_ingredient.input :unit %>
-            <% end %>
-          </div>
+            <div class="d-flex ingredient-form flex-wrap">
+              <%= f.fields_for :recipe_ingredients do |ingredient| %>
+                <div class="col-6">
+                  <%= ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
+                </div>
+                <%= ingredient.input :amount %>
+                <%= ingredient.input :unit %>
+              <% end %>
+            </div>
           </template>
-          <div class="d-flex ingredient-form">
-            <%= f.fields_for :recipe_ingredients do |new_ingredient| %>
+          <div class="d-flex ingredient-form flex-wrap">
+            <%= f.fields_for :recipe_ingredients do |ingredient| %>
               <div class="col-6">
-                <%= new_ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
+                <%= ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
               </div>
-              <%= new_ingredient.input :amount %>
-              <%= new_ingredient.input :unit %>
+              <%= ingredient.input :amount %>
+              <%= ingredient.input :unit %>
             <% end %>
           </div>
         </div>
