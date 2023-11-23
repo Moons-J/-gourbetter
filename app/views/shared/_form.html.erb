@@ -9,7 +9,7 @@
       <div data-controller="add-ingredient-recipe">
         <div data-add-ingredient-recipe-target="list">
           <template class="d-flex ingredient-form">
-            <div class="ingredient-form">
+            <div class="d-flex ingredient-form flex-wrap">
               <%= f.fields_for :recipe_ingredients do |ingredient| %>
                 <div class="col-6">
                   <%= ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
