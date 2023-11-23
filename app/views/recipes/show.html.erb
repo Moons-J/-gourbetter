@@ -5,76 +5,67 @@
     <%= image_tag "https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg", height: 300, width: 400 %>
   <% end %>
   <%# if recipe has any ratings, display rating with stars %>
-  <% if @recipe.ratings.any? %>
-  <%# count average rating %>
-  <% sum = 0 %>
-  <% count = 0%>
-  <% @recipe.ratings.each do |rating| %>
-    <% sum += rating.rating.to_f %>
-    <% count +=1 %>
-  <% end %>
-  <% if count.zero? %>
-    <% average = nil %>
-  <% else %>
-    <% average = (sum/count).round(1) %>
-  <% end %>
-  <%# Recipe title %>
-  <h1 class="text-dark"><%= @recipe.title %></h1>
-  <%# Display stars %>
-  <div class="container__text__star">
-    <% if average === 0 %>
-      <span class="fa-regular fa-star"></span>
+  <div class="container__text">
+    <% if @recipe.ratings.any? %>
+
+        <%# Recipe title %>
+        <h1 class="text-dark"><%= @recipe.title %></h1>
+        <%# Display stars %>
+        <div class="container__text__star">
+          <% if @recipe.average_rating_bis === 0 %>
+            <span class="fa-regular fa-star"></span>
+          <% end %>
+          <% @recipe.average_rating_bis.round.times do %>
+            <span class="fa fa-star"></span>
+          <% end %>
+          <p><%= @recipe.average_rating_bis %>/5</p>
+        </div>
+      <%# if no ratings display this %>
+    <% else %>
+      <h1 class="text-dark"><%= @recipe.title %></h1>
+      <p>No ratings</p>
     <% end %>
-    <% average.round.times do %>
-      <span class="fa fa-star"></span>
+
+
+    <h3>Description:</h3>
+    <p><%= @recipe.description %></p>
+
+    <%# Instructions and ingredients should be visible when user bought the recipe %>
+    <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+
+    <% if recipe_purchased %>
+      <h3>Instructions:</h3>
+      <p><%= @recipe.instructions %></p>
+      <h3>Ingredients:</h3>
+      <ul>
+        <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+          <% ingredient = Ingredient.find(recipe_ingredient.ingredient_id) %>
+          <li class="text-dark">• <%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %> •</li>
+        <% end %>
+      </ul>
     <% end %>
-    <p><%= average %>/5</p>
+    <div class="container__text__timing">
+      <div class="container__text__timing_time">
+        <h2>Number of portions</h2>
+        <p class="text-dark"><%= @recipe.number_of_people %></p>
+      </div>
+      <div class="container__text__timing_time">
+        <h2>Chef</h2>
+        <p class="text-dark"><%= @recipe.user.user_name %></p>
+      </div>
+      <div class="container__text__timing_time">
+        <h2>Price</h2>
+        <p class="text-dark"><%= @recipe.price %>euros</p>
+      </div>
+    </div>
+    <% if recipe_purchased %>
+      <p>This recipe is on your "Purchased" list! 😊 </p>
+      <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark" %>
+    <% else %>
+      <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
+      <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+    <% end %>
   </div>
-  <%# if no ratings display this %>
-  <% else %>
-  <h1 class="text-dark"><%= @recipe.title %></h1>
-  <p>No ratings</p>
-  <% end %>
-
-
-  <h3>Description:</h3>
-  <p><%= @recipe.description %></p>
-
-  <%# Instructions and ingredients should be visible when user bought the recipe %>
-  <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
-
-  <% if recipe_purchased %>
-    <h3>Instructions:</h3>
-    <p><%= @recipe.instructions %></p>
-    <h3>Ingredients:</h3>
-    <ul>
-      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-        <% ingredient = Ingredient.find(recipe_ingredient.ingredient_id) %>
-        <li class="text-dark">• <%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %> •</li>
-      <% end %>
-    </ul>
-  <% end %>
-  <div class="container__text__timing">
-    <div class="container__text__timing_time">
-      <h2>Number of portions</h2>
-      <p class="text-dark"><%= @recipe.number_of_people %></p>
-    </div>
-    <div class="container__text__timing_time">
-      <h2>Chef</h2>
-      <p class="text-dark"><%= @recipe.user.user_name %></p>
-    </div>
-    <div class="container__text__timing_time">
-      <h2>Price</h2>
-      <p class="text-dark"><%= @recipe.price %>euros</p>
-    </div>
-  </div>
-  <% if recipe_purchased %>
-    <p>This recipe is on your "Purchased" list! 😊 </p>
-    <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark" %>
-  <% else %>
-    <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
-    <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
-  <% end %>
 </div>
 
 <div>

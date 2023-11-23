@@ -24,4 +24,8 @@ class Recipe < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def average_rating_bis
+    (ratings.pluck(:rating).sum / ratings.count.to_f).round(1)
+  end
 end
