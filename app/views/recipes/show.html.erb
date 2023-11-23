@@ -1,24 +1,27 @@
-
 <div class="recipe-show container mx-auto d-flex">
    <img
     src="https://images.unsplash.com/photo-1549589237-9e70b6be4da8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80"
     alt="Pancake"
    />
-   <%# if recipe has any ratings, display rating with stars %>
-   <% if @recipe.ratings.any? %>
-    <% sum = 0 %>
-      <% count = 0%>
-      <% @recipe.ratings.each do |rating| %>
-        <% sum += rating.rating.to_f %>
-        <% count +=1 %>
-      <% end %>
-      <% if count.zero? %>
-        <% average = nil %>
-      <% else %>
-        <% average = (sum/count).round(1) %>
-      <% end %>
+
    <div class="container__text">
+    <%# if recipe has any ratings, display rating %>
+   <% if @recipe.ratings.any? %>
+    <%# count average rating %>
+    <% sum = 0 %>
+    <% count = 0%>
+    <% @recipe.ratings.each do |rating| %>
+      <% sum += rating.rating.to_f %>
+      <% count +=1 %>
+    <% end %>
+    <% if count.zero? %>
+      <% average = nil %>
+    <% else %>
+      <% average = (sum/count).round(1) %>
+    <% end %>
+    <%# Recipe title %>
     <h1 class="text-dark"><%= @recipe.title %></h1>
+    <%# Display stars %>
     <div class="container__text__star">
       <% if average === 0 %>
         <span class="fa-regular fa-star"></span>
@@ -30,17 +33,27 @@
     </div>
     <%# if no ratings display this %>
     <% else %>
-    <p>There are no ratings for this recipe yet</p>
+    <h1 class="text-dark"><%= @recipe.title %></h1>
+    <p>No ratings</p>
   <% end %>
 
 
     <h3>Description:</h3>
     <p><%= @recipe.description %></p>
 
-    <%# Instructions should be visible when user bought the recipe %>
-    <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+    <%# Instructions and ingredients should be visible when user bought the recipe %>
+    <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+
+    <% if recipe_purchased %>
       <h3>Instructions:</h3>
       <p><%= @recipe.instructions %></p>
+      <h3>Ingredients:</h3>
+      <ul>
+        <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+          <% ingredient = Ingredient.find(recipe_ingredient.ingredient_id) %>
+          <li class="text-dark">• <%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %> •</li>
+        <% end %>
+      </ul>
     <% end %>
     <div class="container__text__timing">
      <div class="container__text__timing_time">
@@ -56,10 +69,14 @@
       <p class="text-dark"><%= @recipe.price %>euros</p>
      </div>
     </div>
-     <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
-    <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+      <% if recipe_purchased %>
+        <p>This recipe is on your "Purchased" list! 😊 </p>
+        <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark" %>
+      <% else %>
+        <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
+        <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+      <% end %>
    </div>
-</div>
 
 <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
   <div data-controller="insert-ratings">
