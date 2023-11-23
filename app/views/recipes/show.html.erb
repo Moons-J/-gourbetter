@@ -77,26 +77,28 @@
         <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
       <% end %>
    </div>
-
-<% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
-  <div data-controller="insert-ratings">
-    <hr class="my-5">
-    <div class="row">
-      <div class="col-12 col-sm-6" data-insert-ratings-target="items">
-        <h3>Ratings</h3>
-        <% if @recipe.ratings.empty? %>
-          <small><em class="text-muted">Be the first one to review this list</em></small>
-        <% end %>
-        <% @recipe.ratings.each do |rating| %>
-          <%= render "ratings/rating", rating: rating %>
-        <% end %>
-      </div>
-      <div class="col-12 col-sm-6">
-        <div class="bg-white rounded p-3">
-          <h5>Add your review</h5>
-          <%= render "ratings/form", rating: @rating, recipe: @recipe %>
+</div>
+<div>
+  <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+    <div data-controller="insert-ratings">
+      <hr class="my-5">
+      <div class="row">
+        <div class="col-12 col-sm-6" data-insert-ratings-target="items">
+          <h3>Ratings</h3>
+          <% if @recipe.ratings.empty? %>
+            <small><em class="text-muted">Be the first one to review this list</em></small>
+          <% end %>
+          <% @recipe.ratings.each do |rating| %>
+            <%= render "ratings/rating", rating: rating %>
+          <% end %>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="bg-white rounded p-3">
+            <h5>Add your review</h5>
+            <%= render "ratings/form", rating: @rating, recipe: @recipe %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
