@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
   def order_recipes(keyword, query = nil)
     if query.nil?
       if keyword == "top"
-        return Recipe.all.sort_by(&:average_rating).reverse
+        return Recipe.all.sort_by(&:average_rating).reverse # changes need to be made here
       else
         return Recipe.all.sort_by(&:average_rating)
       end
