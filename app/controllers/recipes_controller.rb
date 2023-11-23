@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
+    @rating = Rating.new # for the form adding ratings
   end
 
   def index

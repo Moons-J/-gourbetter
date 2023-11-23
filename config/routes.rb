@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :recipes, only: %i[index show new create] do
     resources :purchases, only: %i[new create]
+    resources :ratings, only: %i[create]
   end
 end
