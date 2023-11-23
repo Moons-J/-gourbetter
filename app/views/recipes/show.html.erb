@@ -69,7 +69,12 @@
       <p class="text-dark"><%= @recipe.price %>euros</p>
      </div>
     </div>
-     <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
-    <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+      <% if recipe_purchased %>
+        <p>This recipe is on your "Purchased" list! 😊 </p>
+        <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark" %>
+      <% else %>
+        <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
+        <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
+      <% end %>
    </div>
 </div>
