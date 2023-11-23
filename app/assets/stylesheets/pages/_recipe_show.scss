@@ -3,25 +3,10 @@ $primary-color: #fff;
 $border-radius: 5px;
 $black-color: #351897;
 
-.recipe-show {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 500px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  place-items: center;
-
-  background-color: $primary-color;
-  border-radius: $border-radius;
-  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
-
-  img {
-    width: 400px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: $border-radius 0 0 $border-radius;
-  }
+.recipe-show-img img {
+  width: 400px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .container__text {
@@ -39,7 +24,7 @@ $black-color: #351897;
   }
 
   p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .container__text__timing {

@@ -1,13 +1,14 @@
-<div class="container new_card">
-  <% if @recipe.photo.attached? %>
-    <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
-  <% else %>
-    <%= image_tag "https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg", height: 300, width: 400 %>
-  <% end %>
+<div class="container d-flex mt-3">
+  <div class="recipe-show-img">
+    <% if @recipe.photo.attached? %>
+      <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <%= image_tag "https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg", height: 300, width: 400 %>
+    <% end %>
+  </div>
   <%# if recipe has any ratings, display rating with stars %>
-  <div class="container__text">
+  <div class="container__text recipe-show-info">
     <% if @recipe.ratings.any? %>
-
         <%# Recipe title %>
         <h1 class="text-dark"><%= @recipe.title %></h1>
         <%# Display stars %>
@@ -18,7 +19,7 @@
           <% @recipe.average_rating_bis.round.times do %>
             <span class="fa fa-star"></span>
           <% end %>
-          <p><%= @recipe.average_rating_bis %>/5</p>
+          <span><%= @recipe.average_rating_bis %>/5</span>
         </div>
       <%# if no ratings display this %>
     <% else %>
@@ -26,7 +27,6 @@
       <p>No ratings</p>
     <% end %>
 
-    <h3>Description:</h3>
     <p><%= @recipe.description %></p>
 
     <%# Instructions and ingredients should be visible when user bought the recipe %>
@@ -39,7 +39,7 @@
       <ul>
         <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
           <% ingredient = Ingredient.find(recipe_ingredient.ingredient_id) %>
-          <li class="text-dark">• <%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %> •</li>
+          <li class="text-dark"><%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %></li>
         <% end %>
       </ul>
     <% end %>
@@ -54,7 +54,7 @@
       </div>
       <div class="container__text__timing_time">
         <h2>Price</h2>
-        <p class="text-dark"><%= @recipe.price %>euros</p>
+        <p class="text-dark">€<%= @recipe.price %></p>
       </div>
     </div>
     <% if recipe_purchased %>
@@ -65,28 +65,29 @@
       <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
     <% end %>
   </div>
-  <div>
-    <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
-      <div data-controller="insert-ratings">
-        <hr class="my-5">
-        <div class="row">
-          <div class="col-12 col-sm-6" data-insert-ratings-target="items">
-            <h3>Ratings</h3>
-            <% if @recipe.ratings.empty? %>
-              <small><em class="text-muted">Be the first one to review this list</em></small>
-            <% end %>
-            <% @recipe.ratings.each do |rating| %>
-              <%= render "ratings/rating", rating: rating %>
-            <% end %>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="bg-white rounded p-3">
-              <h5>Add your review</h5>
-              <%= render "ratings/form", rating: @rating, recipe: @recipe %>
-            </div>
+</div>
+
+<div class="container">
+  <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+    <div data-controller="insert-ratings">
+      <hr class="my-5">
+      <div class="row">
+        <div class="col-12 col-sm-6" data-insert-ratings-target="items">
+          <h3>Ratings</h3>
+          <% if @recipe.ratings.empty? %>
+            <small><em class="text-muted">Be the first one to review this list</em></small>
+          <% end %>
+          <% @recipe.ratings.each do |rating| %>
+            <%= render "ratings/rating", rating: rating %>
+          <% end %>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="bg-white rounded p-3">
+            <h5>Add your review</h5>
+            <%= render "ratings/form", rating: @rating, recipe: @recipe %>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
