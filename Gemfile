@@ -28,6 +28,9 @@ gem "jbuilder"
 
 gem "devise"
 
+gem "dotenv-rails"
+gem "cloudinary"
+
 # Adding PG Search gem to the project
 gem "pg_search"
 
