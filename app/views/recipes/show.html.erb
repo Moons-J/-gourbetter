@@ -1,35 +1,39 @@
 <div class="recipe-show container mx-auto d-flex">
-   <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
-   <%# if recipe has any ratings, display rating with stars %>
-   <% if @recipe.ratings.any? %>
-    <%# count average rating %>
+  <% if @recipe.photo.key.nil? %>
+    <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
+  <% else %>
+    <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  <%# if recipe has any ratings, display rating with stars %>
+  <% if @recipe.ratings.any? %>
+  <%# count average rating %>
     <% sum = 0 %>
     <% count = 0%>
     <% @recipe.ratings.each do |rating| %>
-      <% sum += rating.rating.to_f %>
-      <% count +=1 %>
+    <% sum += rating.rating.to_f %>
+    <% count +=1 %>
+  <% end %>
+  <% if count.zero? %>
+    <% average = nil %>
+  <% else %>
+    <% average = (sum/count).round(1) %>
+  <% end %>
+  <%# Recipe title %>
+  <h1 class="text-dark"><%= @recipe.title %></h1>
+  <%# Display stars %>
+  <div class="container__text__star">
+    <% if average === 0 %>
+      <span class="fa-regular fa-star"></span>
     <% end %>
-    <% if count.zero? %>
-      <% average = nil %>
-    <% else %>
-      <% average = (sum/count).round(1) %>
+    <% average.round.times do %>
+      <span class="fa fa-star"></span>
     <% end %>
-    <%# Recipe title %>
-    <h1 class="text-dark"><%= @recipe.title %></h1>
-    <%# Display stars %>
-    <div class="container__text__star">
-      <% if average === 0 %>
-        <span class="fa-regular fa-star"></span>
-      <% end %>
-      <% average.round.times do %>
-        <span class="fa fa-star"></span>
-      <% end %>
-     <p><%= average %>/5</p>
-    </div>
-    <%# if no ratings display this %>
-    <% else %>
-    <h1 class="text-dark"><%= @recipe.title %></h1>
-    <p>No ratings</p>
+    <p><%= average %>/5</p>
+  </div>
+  <%# if no ratings display this %>
+  <% else %>
+  <h1 class="text-dark"><%= @recipe.title %></h1>
+  <p>No ratings</p>
   <% end %>
 
 
