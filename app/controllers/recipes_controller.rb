@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipes_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -46,7 +47,8 @@ class RecipesController < ApplicationController
   end
 
   def recipes_params
-    params.require(:recipe).permit(:title, :description, :price, :category, :number_of_people, :instructions)
+    params.require(:recipe).permit(:title, :description, :price, :category,
+                                   :number_of_people, :instructions)
   end
 
   def set_recipes_average_rating

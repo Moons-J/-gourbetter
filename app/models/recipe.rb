@@ -8,9 +8,9 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
 
   validates :title, presence: true
-  validates :description, presence: true, length: { minimum: 20 }
+  validates :description, presence: true
   validates :price, presence: true
   validates :category, presence: true
   validates :number_of_people, numericality: { only_integer: true }
-  validates :instructions, presence: true, length: { minimum: 20 }
+  validates :instructions, presence: true
 end
