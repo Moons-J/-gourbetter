@@ -19,7 +19,7 @@
           <% @recipe.average_rating_bis.round.times do %>
             <span class="fa fa-star"></span>
           <% end %>
-          <span><%= @recipe.average_rating_bis %>/5</span>
+          <span class="text-dark"><%= @recipe.average_rating_bis %>/5</span>
         </div>
       <%# if no ratings display this %>
     <% else %>
@@ -59,7 +59,7 @@
     </div>
     <% if recipe_purchased %>
       <p>This recipe is on your "Purchased" list! 😊 </p>
-      <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark" %>
+      <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark mb-3" %>
     <% else %>
       <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
       <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
@@ -75,7 +75,7 @@
         <div class="col-12 col-sm-6" data-insert-ratings-target="items">
           <h3>Ratings</h3>
           <% if @recipe.ratings.empty? %>
-            <small><em class="text-muted">Be the first one to review this list</em></small>
+            <small><em class="text-muted">Be the first one to review this recipe</em></small>
           <% end %>
           <% @recipe.ratings.each do |rating| %>
             <%= render "ratings/rating", rating: rating %>
