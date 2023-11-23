@@ -13,7 +13,7 @@ class PurchasesController < ApplicationController
     purchase.recipe = recipe
     purchase.total_price = recipe.price
     if purchase.save
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
       render :new, status: 422
     end
