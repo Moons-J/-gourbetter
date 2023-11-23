@@ -8,6 +8,68 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+ingredients = ['Red chili flakes', 'Black peppercorns', 'Coriander
+','Fennel seeds
+','Paprika
+','Oregano
+','Turmeric
+','Whole nutmeg
+','Bay leaves
+','Cayenne pepper
+','Thyme
+','Cinnamon
+','Panko bread crumbs
+','Pasta
+','Couscous
+','Rice
+','All-purpose flour
+','White sugar
+','Brown sugar
+','Powdered sugar
+','Baking powder
+','Active dry yeast
+','Chicken stock
+','Beef stock
+','Butter
+','Heavy cream
+','Eggs
+','Parmesan
+','Bacon
+','Parsley
+','Celery
+','Carrots
+','Lemons
+','Limes
+','Orange juice
+','Ketchup
+','Mayonnaise
+','Extra virgin olive oil
+','vegetable oil
+','Canola/olive oil
+','Vinegar
+','Mustard
+','Honey
+','Garlic
+','Shallots
+','Potatoes — Idaho
+','Onions — yellow
+','Onions — red
+','Tomatoes
+','Black Pepper
+','Cumin
+','Coriander
+','Bay Leaves
+','Paprika
+','Cayenne
+','Fennel
+','Turmeric
+','Cinnamon
+','Nutmeg
+','Thyme
+','Oregano
+','Chile Powder
+','Chile Flakes']
+
 require 'faker'
 
 puts "clearing RecipeIngredient 🔥"
@@ -22,6 +84,64 @@ puts "clearing User 🔥"
 User.destroy_all
 puts "clearing Ingredient 🔥"
 Ingredient.destroy_all
+
+puts "seeding ingrediants 🌱"
+ingredients.each do |ingrediant|
+  Ingredient.create!(
+    name: ingrediant,
+  )
+end
+
+puts "seeding usable user 👨🏽‍🌾"
+user = User.create!(
+  email: "barttender@gmail.com",
+  password: "123456",
+  first_name: "Bart",
+  last_name: "Tender",
+  nationality: 'Begium',
+  user_name: "BarTTender",
+)
+recipe = Recipe.create!(
+  title: "Creamy Pasta Bake with Cherry Tomatoes and Basil",
+  description: "This creamy pasta bake is one of my favorite midweek pasta dishes. My whole family loves it, and there is not much prep. Once the pasta bake is in the oven, you can make a salad or set the table, and then it's time to eat.",
+  instructions: "Preheat the oven to 400 degrees F (200 degrees C). Grease a baking dish.
+  Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain, reserving 1 cup cooking water.
+  Heat olive oil in a large skillet over medium heat. Cook onion in oil until soft and translucent, about 5 minutes. Add garlic and cook for an additional 30 seconds. Stir in tomato sauce and tomato paste and cook until slightly reduced, about 5 minutes. Add cream and Parmesan cheese. Season with sugar, salt, and pepper.
+  Stir some of the reserved pasta water into sauce and add cooked penne. Remove from the heat and stir in cherry tomatoes, 1/2 of the mozzarella cheese, and basil. Add more pasta water if needed to reach desired consistency. Pour penne mixture into the prepared baking dish and cover with remaining mozzarella cheese.
+  Bake in the preheated oven until bubbly and cheese is melted, about 20 minutes.",
+  category: "Italian",
+  user_id: user.id,
+  price: Faker::Number.decimal(l_digits: 1),
+  number_of_people: 6,
+)
+puts "seeding recipe ingredients 🌱"
+8.times do
+  RecipeIngredient.create!(
+    recipe_id: recipe.id,
+    ingredient_id: Ingredient.all.sample.id,
+    amount: Faker::Number.between(from: 1, to: 4),
+    unit: Faker::Food.measurement,
+  )
+end
+
+puts "seeding purchases 🌱"
+20.times do
+  Purchase.create!(
+    user_id: user.id,
+    recipe_id: Recipe.all.sample.id,
+    total_price: Faker::Number.decimal(l_digits: 2),
+  )
+end
+
+Recipe.create!(
+  title: Faker::Food.dish,
+  description: Faker::Food.description,
+  instructions: Faker::Food.description,
+  category: Faker::Food.ethnic_category,
+  user_id: user.id,
+  price: Faker::Number.decimal(l_digits: 2),
+  number_of_people: Faker::Number.between(from: 1, to: 4),
+)
 
 puts "seeding users 🌱"
 5.times do
@@ -49,13 +169,6 @@ puts "seeding users 🌱"
   end
 end
 
-puts "seeding ingrediants 🌱"
-20.times do
-  Ingredient.create!(
-    name: Faker::Food.ingredient,
-  )
-end
-
 puts "seeding recipe ingrediants 🌱"
 30.times do
   RecipeIngredient.create!(
@@ -67,7 +180,7 @@ puts "seeding recipe ingrediants 🌱"
 end
 
 puts "seeding ratings 🌱"
-50.times do
+100.times do
   Rating.create!(
     comment: Faker::Restaurant.review,
     rating: Faker::Number.between(from: 1, to: 5),
@@ -77,7 +190,7 @@ puts "seeding ratings 🌱"
 end
 
 puts "seeding purchases 🌱"
-20.times do
+30.times do
   Purchase.create!(
     user_id: User.all.sample.id,
     recipe_id: Recipe.all.sample.id,
