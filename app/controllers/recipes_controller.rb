@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
     set_recipes_average_rating
     if params[:query].present?
       @query = params[:query]
-      @recipes = params[:rating].present? ? order_recipes(params[:rating], params[:query]) : Recipe.where("title ILIKE :title", title: "%#{params[:query]}%")
+      @recipes = params[:rating].present? ? order_recipes(params[:rating], params[:query]) : Recipe.global_search(params[:query])
     else
       @recipes = params[:rating].present? ? order_recipes(params[:rating]) : Recipe.all
     end
@@ -39,9 +39,9 @@ class RecipesController < ApplicationController
       end
     else
       if keyword == "top"
-        return Recipe.where("title ILIKE :title", title: "%#{query}%").sort_by(&:average_rating).reverse
+        return Recipe.global_search(query).sort_by(&:average_rating).reverse
       else
-        return Recipe.where("title ILIKE :title", title: "%#{query}%").sort_by(&:average_rating)
+        return Recipe.global_search(query).sort_by(&:average_rating)
       end
     end
   end

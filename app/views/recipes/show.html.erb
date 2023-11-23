@@ -34,10 +34,11 @@
     <h3>Description:</h3>
     <p><%= @recipe.description %></p>
 
-    <%# Should be visible when user bought the recipe %>
-    <%# <h3>Instructions:</h3>
-    <p><%= @recipe.instructions ></p> %>
-
+    <%# Instructions should be visible when user bought the recipe %>
+    <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+      <h3>Instructions:</h3>
+      <p><%= @recipe.instructions %></p>
+    <% end %>
     <div class="container__text__timing">
      <div class="container__text__timing_time">
       <h2>Number of portions</h2>
