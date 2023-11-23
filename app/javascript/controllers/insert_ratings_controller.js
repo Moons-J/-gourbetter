@@ -18,6 +18,7 @@ export default class extends Controller {
       .then((data) => {
         if (data.inserted_item) {
           this.itemsTarget.insertAdjacentHTML("beforeend", data.inserted_item)
+          this.itemsTarget.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
         }
         this.formTarget.outerHTML = data.form
       })
