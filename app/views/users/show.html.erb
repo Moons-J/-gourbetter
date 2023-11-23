@@ -22,9 +22,8 @@
         </div>
         <div class="list-group">
           <% @user.purchases.each do |purchase| %>
-            <%= link_to( "#", class: "list-group-item list-group-item-action") do %>
+            <%= link_to( recipe_path(purchase.recipe), class: "list-group-item list-group-item-action") do %>
               <i class="fa-solid fa-kitchen-set"> <%= purchase.recipe.title %></i>
-            <%# recipe_path[purchase.recipe] %>
             <% end %>
           <% end %>
           <%# to change the color of the link, add class: active, add after class: aria-current="true"%>
