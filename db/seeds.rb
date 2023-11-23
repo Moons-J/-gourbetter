@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+units = ['grams', 'kg', 'ml', 'l', 'tsp', 'tbsp', 'cup', 'pinch', 'pack', 'handful', 'dash', 'drop', 'filet', 'whole']
 ingredients = ['Red chili flakes', 'Black peppercorns', 'Coriander
 ','Fennel seeds
 ','Paprika
@@ -98,7 +98,7 @@ user = User.create!(
   password: "123456",
   first_name: "Bart",
   last_name: "Tender",
-  nationality: 'Begium',
+  nationality: 'Belgium',
   user_name: "BarTTender",
 )
 recipe = Recipe.create!(
@@ -155,7 +155,7 @@ puts "seeding users 🌱"
           recipe_id: recipe.id,
           ingredient_id: Ingredient.all.sample.id,
           amount: Faker::Number.between(from: 1, to: 4),
-          unit: Faker::Food.measurement,
+          unit: units.sample,
           )
       end
   end
