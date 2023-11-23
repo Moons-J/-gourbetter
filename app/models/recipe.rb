@@ -26,6 +26,8 @@ class Recipe < ApplicationRecord
     }
 
   def average_rating_bis
+    return 0 if ratings.empty?
+
     (ratings.pluck(:rating).sum / ratings.count.to_f).round(1)
   end
 end
