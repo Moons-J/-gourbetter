@@ -4,10 +4,14 @@ class RatingsController < ApplicationController
     @rating = Rating.new(rating_params)
     @rating.recipe = @recipe
     @rating.user = current_user
-    if @rating.save
-      redirect_to recipe_path(@recipe)
-    else
-      render "recipes/show"
+    respond_to do |format|
+      if @rating.save
+        format.html { redirect_to recipe_path(@recipe) }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      else
+        format.html { render recipe_path(@recipe), status: :unprocessable_entity }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
     end
   end
 
