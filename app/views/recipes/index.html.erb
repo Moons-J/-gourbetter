@@ -4,7 +4,7 @@
       <% if @query %>
         <p>You searched for <strong><%= @query %></strong>. We found <%= @recipes.count %> recipes out of our <%= Recipe.count %> on our website.</p>
       <% else %>
-        <p>All <%= @recipes.count %> recipes</p>
+        <h4>All <%= @recipes.count %> recipes</h4>
       <% end %>
     </div>
     <div>
