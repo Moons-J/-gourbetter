@@ -1,3 +1,17 @@
+.recipe_user_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.small_container {
+  max-width: 720px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

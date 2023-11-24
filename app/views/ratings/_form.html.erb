@@ -2,7 +2,9 @@
     insert_ratings_target: "form",
     action: "submit->insert-ratings#send"
   } do |f| %>
-  <%= f.input :comment, placeholder: "Add your rating here..." %>
+  <%= f.input :comment, placeholder: "Add your rating here...", as: :text, :input_html => { class: 'test', :cols => 3, :rows => 5 } %>
+
   <%= f.input :rating, as: :select, collection: (1..5), required: true %>
+
   <%= f.submit class: "btn btn-yellow mt-2" %>
 <% end %>

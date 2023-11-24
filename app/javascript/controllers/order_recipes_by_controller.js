@@ -9,7 +9,6 @@ export default class extends Controller {
   orderRecipes(event) {
     let url = ""
     const selectElementValue = event.target.value;
-    console.log(window.location.search);
     if (window.location.search === "") {
       url = `/recipes?rating=${selectElementValue}`
     } else {

@@ -1,4 +1,4 @@
-<div class="container new_card">
+<div class="container new_card small_container">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -10,10 +10,6 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
-      <%= f.input :email,
-                  hint: "leave it blank if you don't want to change it",
-                  required: false,
-                  input_html: { autocomplete: "new-email" } %>
       <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,

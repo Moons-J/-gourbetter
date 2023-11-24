@@ -10,6 +10,8 @@ export default class extends Controller {
     event.preventDefault()
     const template = document.querySelector("template")
     const clone = template.content.cloneNode(true)
+    console.log(clone)
     this.listTarget.appendChild(clone)
+    console.log(this.listTarget)
   }
 }

@@ -1,29 +1,35 @@
-<div class='container'>
+<div class='containergit bra'>
   <div class='row'>
     <div class='col-md-12'>
 
       <%# user card %>
       <div class="user_card">
         <div class="user_info">
-          <h1><%= @user.user_name %></h1>
-          <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
-          <p><%= @user.email %></p>
-          <p><%= @user.nationality %></p>
-          <a href=<%= edit_user_registration_path %> class="btn btn-warning">Change my information ⚙️</a>
+          <h3><strong><%= @user.first_name %> <%= @user.last_name %></strong></h3>
+          <p>📧 <%= @user.email %></p>
+          <p>🌍 <%= @user.nationality %></p>
+          <a href=<%= edit_user_registration_path %> class="btn btn-warning">Change my information</a>
         </div>
-        <img src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png" alt="user avatar">
+        <div>
+            <p style="text-align: center;">User page of:</p>
+          <h2><strong><%= @user.user_name %></strong></h2>
+        </div>
+        <img class="user_avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D">
       </div>
 
+    <div class="recipe_user_container">
       <%# purchased %>
-      <div class="recipe_card">
+      <div class="recipe_card col">
         <div class="card_menu_seperator">
-          <h2>Purchased recipes</h2>
+          <h4>Purchased recipes</h4>
           <%= link_to("Find new recipe's", recipes_path, class: "btn btn-warning") %>
         </div>
         <div class="list-group">
           <% @user.purchases.each do |purchase| %>
             <%= link_to( recipe_path(purchase.recipe), class: "list-group-item list-group-item-action") do %>
-              <i class="fa-solid fa-kitchen-set"> <%= purchase.recipe.title %></i>
+            <div>
+              <i class="fa-solid fa-kitchen-set" style="color: #ff9500; font-size: 30px;"></i><span style="font-size: 18px;"> - <%= purchase.recipe.title %></span>
+            </div>
             <% end %>
           <% end %>
           <%# to change the color of the link, add class: active, add after class: aria-current="true"%>
@@ -32,15 +38,15 @@
       </div>
 
       <%# created %>
-      <div class="recipe_card">
+      <div class="recipe_card col">
         <div class="card_menu_seperator">
-          <h2>Created recipes</h2>
-          <%= link_to("Create new recipe", "#", class: "btn btn-warning") %>
+          <h4>Created recipes</h4>
+          <%= link_to("Create new recipe", new_recipe_path , class: "btn btn-warning") %>
         </div>
         <div class="list-group">
           <% @user.recipes.each do |recipe| %>
             <%= link_to( "#", class: "list-group-item list-group-item-action") do %>
-              <i class="fa-solid fa-pen-to-square"> <%= recipe.title %></i>
+              <i class="fa-solid fa-pen-to-square" style="color: #ff9500; font-size: 30px;"></i><span style="font-size: 18px;"> - <%= recipe.title %></i>
             <% end %>
           <% end %>
             <%# recipe_path[purchase.recipe] %>
@@ -49,6 +55,7 @@
         </div>
       </div>
 <%# end %>
+      </div>
     </div>
   </div>
 </div>

@@ -18,10 +18,14 @@
   <div class="cards" data-order-recipes-by-target="cards">
     <% @recipes.each do |recipe| %>
       <div class="card-trip">
-        <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg"/>
+        <% if recipe.photo.key.nil? %>
+          <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
+        <% else %>
+          <%= cl_image_tag recipe.photo.key, crop: :fill %>
+        <% end %>
         <div class="card-trip-infos">
           <div>
-            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= recipe.average_rating %></span> <span style="font-size: 14px;">⭐</span></h2>
+            <h2><%= recipe.title %> <span style="opacity: 0.6; font-size: 14px;">• <%= recipe.average_rating_bis %></span> <span style="font-size: 14px;">⭐</span></h2>
             <p><%= recipe.description %></p>
           </div>
         </div>
