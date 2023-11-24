@@ -20,6 +20,7 @@
 footer{
   width: 100%;
   font-size: smaller;
+  color: white;
   ul{
     padding: 0;
     margin-top: 0.5rem;
@@ -28,6 +29,11 @@ footer{
   ul li{
     display: inline;
   }
+
+  .social-media {
+    font-size: 2rem;
+    margin-right: 16px;
+  }
 }
 
 a {
@@ -35,19 +41,15 @@ a {
   color: white;
 }
 
-
-
-.social-media{
-  font-size: 1.5rem;
-}
-
-.contact{
-  font-size: 0.7rem;
+.contact {
+  li {
+    margin-left: 16px;
+  }
 }
 
 .phrase{
-  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   margin-inline: 0;
+  font-size: 1rem;
 }
