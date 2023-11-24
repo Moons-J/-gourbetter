@@ -61,3 +61,10 @@ $black-color: #351897;
   font-size: 0.8rem;
   color: #ffa800;
 }
+
+.fa-pen-to-square {
+  margin-left: 5px;
+  &:hover {
+    font-size: 1.1rem;
+  }
+}
