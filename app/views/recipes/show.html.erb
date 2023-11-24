@@ -31,7 +31,7 @@
 
     <%# Instructions and ingredients should be visible when user bought the recipe %>
     <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
-
+    <% recipe_created = user_signed_in? && current_user.recipes.include?(@recipe) %>
     <% if recipe_purchased %>
       <h3>Instructions:</h3>
       <p><%= @recipe.instructions %></p>
@@ -57,8 +57,9 @@
         <p class="text-dark">€<%= @recipe.price %></p>
       </div>
     </div>
-    <% if recipe_purchased %>
+    <% if recipe_purchased || recipe_created %>
       <p>This recipe is on your "Purchased" list! 😊 </p>
+      <%= link_to "Back", recipes_path, class: "btn btn-outline-secondary mb-3" %>
       <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark mb-3" %>
     <% else %>
       <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
