@@ -11,14 +11,6 @@
 //   width: 40px;
 // }
 
-ul li{
-  display: inline;
-  color: white;
-  margin-left: 1.2rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .btn-warning{
   color: white
 }
@@ -28,6 +20,13 @@ nav{
   top: 0;
   width: 100%;
   z-index: 1;
+  ul li{
+    display: inline;
+    color: white;
+    margin-left: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .img-avatar{
