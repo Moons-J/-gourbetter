@@ -1,21 +1,15 @@
-<h1 class="text-center pb-4">Confirm your purchase 🤤</h1>
-
-<div class="card-trip container w-50">
-  <% if @recipe.photo.key.nil? %>
-    <img src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
-  <% else %>
-    <%= cl_image_tag @recipe.photo.key, crop: :fill %>
-  <% end %>
-  <div class="card-trip-infos">
-    <div>
+<div class="purc-container">
+  <div class="purc-sidecontainer">
+    <%= image_tag "logo_black.png", class: "logo" %>
+    <div class="price-name">
       <h2><%= @recipe.title %></h2>
-      <p><%= @recipe.description %></p>
+      <p class="price">€ <%= @recipe.price %></p>
     </div>
+    <% if @recipe.photo.key.nil? %>
+      <img class="recipe-pic" src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
+    <% else %>
+      <%= cl_image_tag @recipe.photo.key, crop: :fill %>
+    <% end %>
+    <%= button_to "Pay now", recipe_purchases_path(@recipe), class: "px-4 btn btn-yellow mx-auto" %>
   </div>
-  <h2 class="card-trip-pricing"><%= @recipe.price %></h2>
-  <%= link_to("Read more", recipe_path(@recipe), class: "read-more-button") %>
 </div>
-
-<div class="text-center mt-5"><%= button_to "Confirm", recipe_purchases_path(@recipe), class: "px-4 btn btn-yellow mx-auto" %></div>
-
-<%= link_to "Back to recipes", recipes_path %>
