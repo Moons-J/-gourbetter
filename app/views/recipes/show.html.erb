@@ -27,7 +27,7 @@
     <%# Instructions and ingredients should be visible when user bought the recipe %>
     <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
     <% recipe_created = user_signed_in? && current_user.recipes.include?(@recipe) %>
-    <% if recipe_purchased %>
+    <% if recipe_purchased || recipe_created %>
       <h3>Ingredients:</h3>
       <ul>
         <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
