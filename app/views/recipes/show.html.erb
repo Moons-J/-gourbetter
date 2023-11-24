@@ -1,13 +1,8 @@
-<div class="container d-flex mt-3">
-  <div class="recipe-show-img">
-    <% if @recipe.photo.attached? %>
-      <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <%= image_tag "https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg", height: 300, width: 400 %>
-    <% end %>
-  </div>
+<%# Recipe show %>
+
+<div class="container recipe-show justify-content-between d-flex bg-white mt-3">
   <%# if recipe has any ratings, display rating with stars %>
-  <div class="container__text recipe-show-info">
+  <div class="container__text recipe-show-info p-0">
     <% if @recipe.ratings.any? %>
         <%# Recipe title %>
         <h1 class="text-dark"><%= @recipe.title %></h1>
@@ -33,8 +28,6 @@
     <% recipe_purchased = user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
     <% recipe_created = user_signed_in? && current_user.recipes.include?(@recipe) %>
     <% if recipe_purchased %>
-      <h3>Instructions:</h3>
-      <p><%= @recipe.instructions %></p>
       <h3>Ingredients:</h3>
       <ul>
         <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
@@ -42,8 +35,19 @@
           <li class="text-dark"><%= ingredient.name %> - <%= recipe_ingredient.amount %> <%= recipe_ingredient.unit %></li>
         <% end %>
       </ul>
+      <h3>Instructions:</h3>
+      <p><%= @recipe.instructions %></p>
     <% end %>
-    <div class="container__text__timing">
+  </div>
+
+  <div class="recipe-show-img">
+    <% if @recipe.photo.attached? %>
+      <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <%= image_tag "https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg", height: 300, width: 400 %>
+    <% end %>
+
+    <div class="container__text__timing justify-content-between">
       <div class="container__text__timing_time">
         <h2>Number of portions</h2>
         <p class="text-dark"><%= @recipe.number_of_people %></p>
@@ -58,15 +62,19 @@
       </div>
     </div>
     <% if recipe_purchased || recipe_created %>
-      <p>This recipe is on your "Purchased" list! 😊 </p>
-      <%= link_to "Back", recipes_path, class: "btn btn-outline-secondary mb-3" %>
-      <%= link_to "Go to my recipes", user_path(current_user), class: "btn btn-outline-dark mb-3" %>
+      <p>This recipe is on your <%= recipe_purchased ? '"Purchased"' : '"Created"' %> list! 😊 </p>
+      <div class="d-flex">
+        <%= link_to "Back", :back, class: "btn btn-outline-dark my-3 px-5" %>
+      </div>
     <% else %>
       <%= link_to "Buy", new_recipe_purchase_path(@recipe), class: "btn btn-yellow px-5" %>
       <%= link_to "Back to recipes", recipes_path, class: "btn btn-outline-dark" %>
     <% end %>
   </div>
+
 </div>
+
+<%# Reviews  %>
 
 <div class="container">
   <div data-controller="insert-ratings">
