@@ -83,7 +83,7 @@
         <% end %>
       </div>
     <% end %>
-    <% if user_signed_in? && current_user.purchased_recipes.include?(@recipe) %>
+    <% if recipe_purchased %>
       <div class="col-12 col-sm-6">
         <div class="bg-white rounded p-3">
           <h5>Add your review</h5>
