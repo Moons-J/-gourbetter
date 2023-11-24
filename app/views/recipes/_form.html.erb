@@ -11,22 +11,30 @@
           <template class="d-flex ingredient-form">
             <div class="d-flex ingredient-form flex-wrap">
               <%= f.fields_for :recipe_ingredients do |ingredient| %>
-                <div class="col-6">
+              <div class="row">
+                <div class="col-8">
                   <%= ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
                 </div>
+                <div class="col-4 d-flex">
                 <%= ingredient.input :amount %>
                 <%= ingredient.input :unit %>
+                </div>
+                </div>
               <% end %>
             </div>
           </template>
           <div class="d-flex ingredient-form flex-wrap">
             <%= f.fields_for :recipe_ingredients do |ingredient| %>
-              <div class="col-6">
+            <div class="row">
+              <div class="col-8">
                 <%= ingredient.input :ingredient_id, collection: Ingredient.all, value_method: :id %>
               </div>
+              <div class="col-4 d-flex">
               <%= ingredient.input :amount %>
               <%= ingredient.input :unit %>
+              </div>
             <% end %>
+          </div>
           </div>
         </div>
 
