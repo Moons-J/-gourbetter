@@ -1,15 +1,18 @@
-<div class="purc-container">
-  <div class="purc-sidecontainer">
-    <%= image_tag "logo_black.png", class: "logo" %>
-    <div class="price-name">
-      <h2><%= @recipe.title %></h2>
-      <p class="price">€ <%= @recipe.price %></p>
+<div class="purc-container pb-2 mt-3 bg-white">
+  <%= image_tag "logo_black.png", class: "logo d-block mx-auto my-4" %>
+  <div class="content">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column">
+        <h2><%= @recipe.title %></h2>
+        <p class="price">€ <%= @recipe.price %></p>
+      </div>
+      <%= button_to "Pay now", recipe_purchases_path(@recipe), class: "px-4 btn btn-yellow mx-auto" %>
     </div>
+
     <% if @recipe.photo.key.nil? %>
-      <img class="recipe-pic" src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
+      <img class="recipe-pic d-block mx-auto" src="https://www.gutekueche.at/storage/media/recipe/134629/spaghetti-al-pomodoro.jpg" alt="spaguetti">
     <% else %>
-      <%= cl_image_tag @recipe.photo.key, crop: :fill %>
+      <%= cl_image_tag @recipe.photo.key, class: "recipe-pic d-block mx-auto" %>
     <% end %>
-    <%= button_to "Pay now", recipe_purchases_path(@recipe), class: "px-4 btn btn-yellow mx-auto" %>
   </div>
 </div>
